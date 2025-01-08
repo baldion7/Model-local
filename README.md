@@ -87,6 +87,8 @@ Los resultados de la detección se imprimen en el siguiente formato:
 Se detectó [objeto] con una confianza de [confianza] en la ubicación [ubicacion]
 ```
 
+## Flujo de Trabajo del Programa
+```mermaid
 flowchart TD
     A[Inicio] --> B[Instalación de Dependencias]
     B --> C[Login en Hugging Face]
@@ -116,6 +118,7 @@ flowchart TD
     L --> |Error| S[Error de Archivo]
     R --> T[Mostrar Mensaje de Error]
     S --> T
+```
 
 ## Notas
 - El umbral de detección de objetos está establecido en 0.9 para resultados de alta confianza
