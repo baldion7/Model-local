@@ -87,6 +87,36 @@ Los resultados de la detección se imprimen en el siguiente formato:
 Se detectó [objeto] con una confianza de [confianza] en la ubicación [ubicacion]
 ```
 
+flowchart TD
+    A[Inicio] --> B[Instalación de Dependencias]
+    B --> C[Login en Hugging Face]
+    
+    %% Rama de Stable Diffusion
+    C --> D[Cargar Modelo Stable Diffusion]
+    D --> E[Mover Modelo a GPU]
+    E --> F[Ingresar Prompt de Texto]
+    F --> G[Generar Imagen]
+    G --> H[Guardar Imagen Local]
+    
+    %% Rama de YOLO
+    H --> I[Cargar Modelo YOLO]
+    I --> J{Tipo de Entrada?}
+    J --> |URL| K[Cargar Imagen desde URL]
+    J --> |Local| L[Cargar Imagen Local]
+    
+    K --> M[Procesar Imagen]
+    L --> M
+    M --> N[Detectar Objetos]
+    N --> O[Aplicar Umbral de Confianza >0.9]
+    O --> P[Mostrar Resultados]
+    P --> Q[Fin]
+
+    %% Manejo de Errores
+    K --> |Error| R[Error de URL]
+    L --> |Error| S[Error de Archivo]
+    R --> T[Mostrar Mensaje de Error]
+    S --> T
+
 ## Notas
 - El umbral de detección de objetos está establecido en 0.9 para resultados de alta confianza
 - El modelo utiliza CUDA para aceleración GPU cuando está disponible
